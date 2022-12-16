@@ -98,7 +98,7 @@ var loadPrevSearchHist = function () {
 //this function sets the box for today's forecast to have text content based on what is returned from our getForecast() function
 //we are passing in data from that function as a parameter here --- in this case the first index of the data is passed in, so that we are accessing only information about the first day in the array (i.e. now)
 var setTodayBox = function (data) {
-    document.getElementById("today-date").textContent = data.dt_txt;
+    document.getElementById("today-date").textContent = data.dt_txt.split(" ")[0];
     document.getElementById("city-name").textContent = cityName;
     document.getElementById("today-temp").textContent = "Temperature: " + data.main.temp + " degrees";
     document.getElementById("today-humidity").textContent = "Humidity: " + data.main.humidity + "%";
@@ -106,18 +106,18 @@ var setTodayBox = function (data) {
     document.getElementById("today-image").setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 }
 
-var arrayInList = 0;
+var arrayInList = 6;
 var set5dayBoxes = function (data) {
     for (i = 0; i < dayBoxes.length; i++) {
-        document.getElementById(`today-date${[i]}`).textContent = data[arrayInList].dt_txt;
+        document.getElementById(`today-date${[i]}`).textContent = data[arrayInList].dt_txt.split(" ")[0];
         document.getElementById(`today-temp${[i]}`).textContent = "Temperature: " + data[arrayInList].main.temp + " degrees";
         document.getElementById(`today-humidity${[i]}`).textContent = "Humidity: " + data[arrayInList].main.humidity + "%";
         document.getElementById(`today-wind-speed${[i]}`).textContent = "Wind Speed: " + data[arrayInList].wind.speed + " MPH";
         document.getElementById(`today-image${[i]}`).setAttribute("src", "http://openweathermap.org/img/w/" + data[arrayInList].weather[0].icon + ".png");
 
         arrayInList += 8;
-        // console.log(`today-date${[i]}`);
-    }
+    } 
+    arrayInList = 6;
 }
 
 //load previous search history onto page
