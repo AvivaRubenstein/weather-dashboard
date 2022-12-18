@@ -29,7 +29,7 @@ $('.btn').on("click", function (event) {
 
 //the getCoordinates function sends a fetch request to receive the longitude and latitude coordinates for the user's searched city name
 var getCoordinates = function () {
-    var getCoordinatesURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=5&appid=e7ab2c780e57f015e576cf3eb59ae5a7';
+    var getCoordinatesURL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=5&appid=e7ab2c780e57f015e576cf3eb59ae5a7';
     fetch(getCoordinatesURL)
         .then(function (response) {
             return response.json();
@@ -44,7 +44,7 @@ var getCoordinates = function () {
 
 //the getForecast function sends a fetch request to receive weather data for the user's searched city, using the longitude and latitude we retrieved
 var getForecast = function () {
-    var getForecastURL = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=e7ab2c780e57f015e576cf3eb59ae5a7&units=imperial';
+    var getForecastURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=e7ab2c780e57f015e576cf3eb59ae5a7&units=imperial';
     fetch(getForecastURL)
         .then(function (response) {
             return response.json();
