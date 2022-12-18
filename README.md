@@ -10,6 +10,7 @@ Visit https://avivarubenstein.github.io/weather-dashboard/ to open the applicati
 
 ## Usage
 
+![Weather Dashboard](https://user-images.githubusercontent.com/113466697/208317649-a31d0816-97d6-4e79-ae3a-d7665ae1d942.gif)
 
 
 ## Credits
