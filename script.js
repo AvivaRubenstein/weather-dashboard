@@ -25,6 +25,7 @@ $('.btn').on("click", function (event) {
     getCoordinates();
     //with every search, we update the search history in local storage and update the display on our page
     setSearchHistory();
+    loadPrevSearchHist();
 });
 
 //the getCoordinates function sends a fetch request to receive the longitude and latitude coordinates for the user's searched city name
@@ -50,7 +51,8 @@ var getForecast = function () {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.list);
+            // console.log(data.list);
+            //the information about today only needs to look at the current weather info, meaning we only need data for the first item in the array
             setTodayBox(data.list[0]);
             set5dayBoxes(data.list);
         })
@@ -75,6 +77,13 @@ var loadPrevSearchHist = function () {
     existingStorage = JSON.parse(localStorage.getItem("searchStorage"));
     //this for loop will loop through the search history and make each one appear on the page as a button
     if (existingStorage !== null) {
+        //because we are loading the prev search history as button elements every time we hit submit, we don't want 
+        //there to be repeated buttons, so we need to remove the existing search history buttons BEFORE we can make the search history buttons update on the page
+        var oldBtns = $(".history-btns");
+        for (i=0; i< oldBtns.length; i++){
+            oldBtns.remove();
+        }
+        //this for loop creates button elements for each past search item in the local storage
         for (i = 0; i < existingStorage.length; i++) {
             var histbtn = document.createElement("button");
             histbtn.type = "submit";
@@ -105,7 +114,9 @@ var setTodayBox = function (data) {
     document.getElementById("today-wind-speed").textContent = "Wind Speed: " + data.wind.speed + " MPH";
     document.getElementById("today-image").setAttribute("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 }
-
+//because the weather data is returned in 3 hour intervals, we are going to increment by 8 indices in the array each time
+//so that we are looking at 24 hour intervals (3*8hrs = 1 day later)
+//we are starting at interval 6 to start at 12 noon EST instead of 6PM
 var arrayInList = 6;
 var set5dayBoxes = function (data) {
     for (i = 0; i < dayBoxes.length; i++) {
@@ -117,8 +128,10 @@ var set5dayBoxes = function (data) {
 
         arrayInList += 8;
     } 
+    //After the array, we need to set arrayInList back to 6 so that if we run the for loop multiple times
+    //it starts at the same starting point each time without having already been incremented
     arrayInList = 6;
 }
 
-//load previous search history onto page
+//load previous search history onto page when the page opens
 loadPrevSearchHist();
