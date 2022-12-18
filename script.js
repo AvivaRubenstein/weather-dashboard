@@ -103,7 +103,7 @@ var setTodayBox = function (data) {
     document.getElementById("today-temp").textContent = "Temperature: " + data.main.temp + " degrees";
     document.getElementById("today-humidity").textContent = "Humidity: " + data.main.humidity + "%";
     document.getElementById("today-wind-speed").textContent = "Wind Speed: " + data.wind.speed + " MPH";
-    document.getElementById("today-image").setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+    document.getElementById("today-image").setAttribute("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 }
 
 var arrayInList = 6;
@@ -113,7 +113,7 @@ var set5dayBoxes = function (data) {
         document.getElementById(`today-temp${[i]}`).textContent = "Temperature: " + data[arrayInList].main.temp + " degrees";
         document.getElementById(`today-humidity${[i]}`).textContent = "Humidity: " + data[arrayInList].main.humidity + "%";
         document.getElementById(`today-wind-speed${[i]}`).textContent = "Wind Speed: " + data[arrayInList].wind.speed + " MPH";
-        document.getElementById(`today-image${[i]}`).setAttribute("src", "http://openweathermap.org/img/w/" + data[arrayInList].weather[0].icon + ".png");
+        document.getElementById(`today-image${[i]}`).setAttribute("src", "https://openweathermap.org/img/w/" + data[arrayInList].weather[0].icon + ".png");
 
         arrayInList += 8;
     } 
