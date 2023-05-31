@@ -8,15 +8,6 @@ var cityName;
 var existingStorage;
 
 
-//TODO:Use coordinates to get weather data for that location
-//TODO: fetch request to get weather data using coordinates
-//TODAY: city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-//5-day forecast: date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-//TODO: get searchHistory to display on HTML page
-//TODO: get weather data  for 5 day forecast to display in .5dayBox[0]-[4]
-//TODO: figure out how to make past search history clickable to search for that term again
-
-
 //this event listener looks for when the search button is pressed, and retrieves that search term that was input by the user
 $('.btn').on("click", function (event) {
     event.preventDefault();
